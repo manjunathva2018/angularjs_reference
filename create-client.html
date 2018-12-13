@@ -1,0 +1,40 @@
+create-client.html:
+
+<div ui-view>
+    <ajax-loader loader-model="createclient.request.creatingClientList" loader-template-details="createclient.ajaxLoaderCreatingClientList"></ajax-loader>
+
+    <div ng-if="!createclient.request.creatingClientList">
+
+        <div class="card">
+            <form name="clientForm" ng-submit="create.createClient(clientForm.$valid)" class="form-horizontal">
+
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="clientname">Name</label>
+                        <div class="col-md-9">
+                            <input type="text" autocomplete="off" id="clientname" name="clientname" ng-model="create.ClientDetails.ClientName" ng-pattern="/^[a-z A-Z 0-9 .-]*$/" class="form-control" required ng-minlength="3" ng-maxlength="30">
+                            <p style="color:red" ng-show="((clientForm.clientname.$error.minlength) && (clientForm.$submitted))" class="help-block">Clientname is too short.</p>
+                            <p style="color:red" ng-show="((clientForm.clientname.$error.maxlength) && (clientForm.$submitted))" class="help-block">Clientname is too long.</p>
+                            <p style="color:red" ng-show="((clientForm.clientname.$error.pattern) && (clientForm.$submitted))" class="help-block">Clientname is Invalid.</p>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="description">Description</label>
+                        <div class="col-md-9">
+                            <input type="text" autocomplete="off" id="description" name="description" ng-model="create.ClientDetails.ClientDescription" ng-pattern="/^[a-z A-Z 0-9 .-]*$/" class="form-control" required ng-minlength="3" ng-maxlength="100">
+                            <p style="color:red" ng-show="((clientForm.description.$error.maxlength) && (clientForm.$submitted))" class="help-block">Description is too long.</p>
+                            <p style="color:red" ng-show="((clientForm.description.$error.minlength) && (clientForm.$submitted))" class="help-block">Description is too short.</p>
+                            <p style="color:red" ng-show="((clientForm.description.$error.pattern) && (clientForm.$submitted))" class="help-block">Description is Invalid.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer card-footer-btns">
+                    <button type="submit" class="btn btn-sm btn-primary">Submit</button>
+                    <button type="button" class="btn btn-sm btn-primary" ui-sref="root.client"> Back</button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
